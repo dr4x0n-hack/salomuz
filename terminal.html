@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OSINT Terminal</title>
+  <style>
+    body{
+      background:#000;
+      color:#00ff66;
+      font-family: monospace;
+      padding:20px;
+    }
+    #terminal{
+      width:100%;
+      height:500px;
+      background:#0a0a0a;
+      border:1px solid #222;
+      padding:10px;
+      overflow-y:auto;
+    }
+    #input{
+      width:100%;
+      background:#000;
+      color:#00ff66;
+      border:none;
+      outline:none;
+      font-size:16px;
+    }
+  </style>
+</head>
+<body>
+<div id="terminal"></div>
+<input id="input" placeholder="Enter command..." autofocus />
+
+<script>
+let term = document.getElementById("terminal");
+let input = document.getElementById("input");
+
+function print(text){
+    term.innerHTML += text + "<br>";
+    term.scrollTop = term.scrollHeight;
+}
+
+input.addEventListener("keydown", async (e)=>{
+    if(e.key === "Enter"){
+        let cmd = input.value.trim();
+        print("<span>>>> "+cmd+"</span>");
+        input.value = "";
+
+        let res = await fetch("/run", {
+            method:"POST",
+            headers:{ "Content-Type":"application/json" },
+            body: JSON.stringify({command:cmd})
+        });
+
+        let out = await res.text();
+        print(out);
+    }
+});
+</script>
+</body>
+</html>
