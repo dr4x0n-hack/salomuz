@@ -40,65 +40,7 @@ function print(text){
     term.innerHTML += text + "<br>";
     term.scrollTop = term.scrollHeight;
 }
-if cmd == "help":
-    return """
-=== OSINT TERMINAL HELP ===
-
-You can run the following safe OSINT commands:
-
-1) EXIF (rasm metama'lumotlari)
-   Format:
-      exif <file>
-   Misol:
-      exif photo.jpg
-   Natija:
-      Kamera modeli, GPS ma'lumotlari, sana va boshqa EXIF taglari.
-
-2) REVERSE IMAGE (mock natija)
-   Format:
-      reverse-image <file>
-   Misol:
-      reverse-image sample.png
-   Izoh:
-      Bu haqiqiy API talab qiladi. Hozircha test natija chiqadi.
-
-3) WHOIS (domen egasi haqida ochiq ma'lumot)
-   Format:
-      whois <domain>
-   Misol:
-      whois google.com
-   Natija:
-      Admin kontakti, server, ro'yxatdan o'tgan sana va hk.
-
-4) GEO-LOOKUP (koordinata bo‘yicha joyni topish)
-   Format:
-      geo-lookup <lat,lon>
-   Misol:
-      geo-lookup 41.3111,69.2797
-   Natija:
-      Shahar, davlat, hudud nomi va boshqalar.
-
-5) CLEAR (terminalni tozalash)
-   Format:
-      clear
-
-6) HELP (buyruqlar ro'yxati)
-   Format:
-      help
-
-=======================================
-Misollar:
-
-exif img1.jpg
-reverse-image school.png
-whois example.com
-geo-lookup 51.5072,-0.1276
-
-Agar xato buysa:
-'Unknown command' chiqadi.
-"""
-
-
+  
 input.addEventListener("keydown", async (e)=>{
     if(e.key === "Enter"){
         let cmd = input.value.trim();
